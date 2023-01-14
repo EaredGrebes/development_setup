@@ -1,0 +1,8 @@
+# nvidia graphics driver
+$ sudo apt install nvidia-driver-470
+
+# cuda toolkit
+# TODO: verify this on a new machine
+https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04
+
+

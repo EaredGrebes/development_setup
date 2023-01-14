@@ -1,0 +1,226 @@
+#-------------------------------------------------------------------------------
+# random 
+
+system76-power profile battery  
+system76-power profile balanced  
+system76-power profile performance
+
+#-------------------------------------------------------------------------------
+# gcloud
+
+$ gcloud storage cp =r * gs://opup-mc-rev-11-8
+
+
+$ ssh mithrandir@192.168.2.93
+
+$ gsutil -m cp -r \
+  "gs://cetacean-blender-output/SBIR-postprocess-test" \
+  .
+
+
+#-------------------------------------------------------------------------------
+# git
+
+# when doing a rebase, --ours is what is on master
+git checkout --ours file
+
+# --theirs is what is locally changed on the branch
+git checkout --ours file
+
+# Naomi's git tips:
+When working on a new issue:
+- Make a GitLab ticket
+- Go to dyn_sim, and git pull to get latest version
+- git checkout -b feature/<ticket number>-<your branch name>
+- Make yo changes!!
+- Go to VSCode Source Control, stage changes (click the +), commit: [#<ticket number>] <useful message describing what you did>
+- git push (or Publish Branch, if it's your first time pushing the branch)
+- git checkout dyn_sim, git pull, git checkout <your branch>
+- git rebase -i dyn_sim, Ctrl + Enter, git push origin HEAD:dyn_sim --> your changes are now on the online version of dyn_sim!!
+- git checkout dyn_sim, git pull to get your changes onto your version of dyn_sim
+
+
+#-------------------------------------------------------------------------------
+# 
+
+confluence:
+hello
+v3Z2TMASks7S8ki
+
+# some dependency for running the sim:
+$sudo apt-get install --reinstall libxcb-xinerama0
+
+# activate virtual env
+$source ~/.config/virtualenvs/sf/bin/activate
+
+# check that it worked:
+$which python
+$/home/earedgrebes/.config/virtualenvs/sf/bin/python
+
+# re-build starfish sim:
+$ cd src/Starfish/_Build
+$ ./build_basilisk_local.sh
+
+
+#-------------------------------------------------------------------------------
+# installing starfish sim
+
+# activate python virtual enviroment for starfish dev
+$source ~/.config/virtualenvs/sf/bin/activate
+
+# clone repo from here:
+https://source.cloud.google.com/starfish-architecture/basilisk_derived/+/dyn_sim:?authuser=0
+
+# switch to dyn_sim branch:
+$ git checkout -b dyn_sim origin/dyn_sim  
+
+# make sure path to python 3.7 in this file is correct:
+in basilisk_derived/src/Starfish/_Build/build_basilisk_local.sh
+-DPYTHON_LIBRARY=/usr/lib/python${version}/config-${version}m-x86_64-linux-gnu/libpython${version}.so \
+
+# build:
+$ cd src/Starfish/_Build
+$ ./build_basilisk_local.sh  
+
+# in VS code, need to switch to sf python virtual env, ctr+shift+p, to switch python enviroment
+
+# BSK 2.1.2
+https://starfish.oxalisapp.com/wiki/display/SK/Basilisk%3A+Upgrading+to+version+2.1.2
+
+If you need to rebuild, from now on use this command in the basilisk_derived folder:
+python3.7 conanfile.py --generator Ninja 
+
+If you need to perform a clean build, simply add the --clean  option:
+python3.7 conanfile.py --generator Ninja --clean 
+
+If you're doing live debugging of the C/C++ Basilisk modules using (gdb) Attach, use:
+python3.7 conanfile.py --buildType Debug --generator Ninja 
+
+
+#-------------------------------------------------------------------------------
+# MC explorer tool
+# export google could credentials
+$export GOOGLE_APPLICATION_CREDENTIALS="/home/earedgrebes/Starfish/.config/gcloud/starfish-architecture-4ef05863c53a.json"
+s
+# First, update the path in PLEXP_DATA_STORE_DIR in your terminal to point to your data_store dir
+$export PLEXP_DATA_STORE_DIR=/home/earedgrebes/Starfish/Starfish_repo_test1/basilisk_derived/src/Starfish/data_store
+$export PLEXP_DATA_STORE_DIR=/home/earedgrebes/Starfish/starfish_repo2/basilisk_derived/src/Starfish/data_store
+
+# to activate a python virtual environment
+$source /home/earedgrebes/.config/virtualenvs/sfplot_explorer/bin/activate
+
+# run script
+$cd /home/earedgrebes/Starfish/Starfish_repo_test1/basilisk_derived/tools/plot_explorer
+$./run.sh
+
+# open in browser
+http://localhost:5001/index
+
+ 
+#-------------------------------------------------------------------------------
+# running sim manually
+
+#alias psf='${HOME}/Software/Basilisk/basilisk_derived/src/Starfish/_Build/python_env/env.sh python3.7'
+alias psf='/home/earedgrebes/Starfish/Starfish_repo_test1/basilisk_derived/src/Starfish/_Build/python_env/env.sh python3.7'
+
+# navigate to:
+~/Starfish/Starfish_repo_test1/basilisk_derived/src/Starfish$
+
+# to run MC manually, in the Starfish directory, run:
+$psf monteCarloFiles/runMonteCarlo.py -v debug run
+$psf monteCarloFiles/runMonteCarlo.py complete
+
+#-------------------------------------------------------------------------------
+# running MC on cloud
+
+0.) make sure sf python virtual env is activated:
+$source ~/.config/virtualenvs/sf/bin/activate
+
+1.) create seperate branch, append -MC to name
+2.) edit file /src/Starfish/_Build/mc_kubernetes/Makefile
+
+change the following fields:
+
+    configpath='../../scenarioFiles/simulationConfiguration/run_GEO_simulation.yaml'
+    buidname= no caps, no underscores, no slash, short
+    branchname='feature/563-add-rate-limiter-in-controller-MC'
+    author=alexs
+    
+3.) run some pre-processing
+$ cd src/Starfish/_Build/mc_kubernetes
+$ make precommit-branch-prep 
+
+4.) edit how many cases to run
+src/Starfish/scenarioFiles/simulationConfiguration/run_GEO_simulation.yaml
+
+5.) commit the following files:
+
+src/Starfish/_Build/build_iteration/cloudbuild.yml
+src/Starfish/_Build/mc_kubernetes/Makefile
+src/Starfish/_Build/mc_kubernetes/clouditeration.yml
+src/Starfish/scenarioFiles/simulationConfiguration/run_GEO_simulation.yaml  <-only if have config changes
+    
+6.) go to cloud build and create trigger
+
+https://console.cloud.google.com/cloud-build/triggers?authuser=0&project=starfish-architecture
+search: cloud build
+Triggers -> basilisk-iteration-build -> RUN
+- set branch name
+- click RUN_TRIGGER
+- check for completion in History tab
+
+7.) run monte carlo from command line
+$ cd src/Starfish/_Build/mc_kubernetes/
+$ make run-monte-carlo
+
+Note: to check cluster, go to:
+Kubernetes Engine -> Clusters
+
+8.) after done, delete the cluster
+through cloud UI:
+https://console.cloud.google.com/kubernetes/list/overview?authuser=0&project=starfish-architecture
+Kubernetes Engine -> Cluster
+select option dots -> delete
+
+through command line:
+$ cd src/Starfish/_Build/mc_kubernetes
+$ make clean-cloud
+
+9.)  visualze results in MC explorer:
+- go to:
+  /basilisk_derived/src/Starfish/data_store/cloud
+- edit the file to include the folder name of the data:
+  cloud_nicknames.yaml 
+  
+10.) to get high-res plots in MC explorer
+
+
+
+#-------------------------------------------------------------------------------
+# google things
+
+https://mail.google.com/chat/u/0/#chat/welcome
+
+google.com/drive
+
+#-------------------------------------------------------------------------------
+# Starfish FSW files:
+
+basiliskSimulationInterface.py - interface between FSW and basilisk sim models
+otterSoftwareManager.py        - dispatches FSW modules
+otterController.py             - the control module
+
+#-------------------------------------------------------------------------------
+# scp
+
+$scp mithrandir@192.168.2.93:/home/mithrandir/Starfish/cetacean_data/cnn/center_CNN_archived /home/earedgrebes/Starfish/cetacean_data/NASA/
+$scp -r mithrandir@192.168.2.93:/home/mithrandir/Starfish/cetacean_data/NASA/pup_largechar_sun1 /home/earedgrebes/Starfish/cetacean_data/NASA/
+
+
+#-------------------------------------------------------------------------------
+# opencv
+
+sudo rm /home/earedgrebes/anaconda3/envs/py38/lib/libgio-2.0.so.0
+sudo cp /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0 /home/earedgrebes/anaconda3/envs/py38/lib/
+
+

@@ -1,0 +1,290 @@
+
+//------------------------------------------------------------------------------
+// packages
+
+# install pip
+$ sudo apt update
+$ sudo apt install python3-pip
+
+$ which pip
+
+$ sudo apt install git
+
+$ git --version
+
+//------------------------------------------------------------------------------
+// bash
+           
+# launch an application:
+$ nohup spyder &
+
+# check python version
+$ python --version
+
+# cuda device query
+$ /usr/local/cuda/samples/1_Utilities/deviceQuery$ make run
+
+# dash-to-dock, will need to add folder in instructions
+https://micheleg.github.io/dash-to-dock/download.html
+
+# check which version of package
+$ which *
+
+--------------------------------------------------------------------------------
+# docker
+# install docker engine
+https://docs.docker.com/engine/install/ubuntu/
+
+# install nvidia container tools
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker
+
+
+
+--------------------------------------------------------------------------------
+// venv
+
+$ pip install virtualenv
+
+$ virtualenv --version
+
+# create new virtual environment with venv:
+$ python3.7 -m venv /path/to/new/virtual/environment
+
+--------------------------------------------------------------------------------
+// LaTeX
+
+# some LaTeX dependencies:
+$ sudo apt-get install texlive-science
+
+
+# merging pdf
+$ pdftk file1.pdf file2.pdf cat output mergedfile.pdf
+pdftk Alex_Sobel_STAT517_HW1.pdf HW1_problem7.pdf Guassian_process_functions.pdf HW1_problem1_analysis.pdf cat output mergedfile.pdf
+
+# LaTeX and biber
+$ biber document_name
+$ pdflatex document_name
+
+# converting python source code to pdf
+$ enscript -E -q -Z -p - -f Courier10 readmaya.py | ps2pdf - out.pdf
+
+
+--------------------------------------------------------------------------------
+// github
+
+# generatings ssh key for github:
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+# add ssh key to github
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+
+# check everything works, Attempts to ssh to github
+$ ssh -T git@github.com
+
+
+--------------------------------------------------------------------------------
+// 20.04 distro package dependencies
+
+$ sudo apt-get install libfreeimage3 libfreeimage-dev
+
+$ sudo apt-get install -y libhdf5-dev
+
+$ sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
+
+$ sudo apt-get install libglfw3
+$ sudo apt-get install libglfw3-dev
+$ sudo apt-get install libglew-dev
+$ sudo apt-get install libglm-dev
+$ sudo apt-get install libboost-all-dev
+
+
+--------------------------------------------------------------------------------
+// Eigen
+
+// recomend downloading latest repo and installing from source
+
+
+
+
+--------------------------------------------------------------------------------
+// cuda
+
+# nvidia graphics driver
+$ sudo apt install nvidia-driver-470
+
+# cuda toolkit
+# TODO: verify this on a new machine
+https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04
+
+
+// ubuntu probably already has drivers installed for nvidia,
+// check Activities -> Software & Updates / Additional Drivers
+
+// make sure to disable any local nvidia repos, 
+// check Activities -> Software & Updates / Other Software
+
+// download the local runfile option from nvidia:
+https://developer.nvidia.com/cuda-11-4-3-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=runfile_local
+
+// add this to .bashrc:
+
+export PATH=/usr/local/cuda-11.4/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-11.4/lib64:$LD_LIBRARY_PATH
+
+
+--------------------------------------------------------------------------------
+// cudnn
+
+https://developer.nvidia.com/rdp/cudnn-archive
+
+$ sudo dpkg -i libcudnn8_8.2.0.53-1+cuda11.3_amd64.deb
+$ sudo dpkg -i libcudnn8-dev_8.2.0.53-1+cuda11.3_amd64.deb
+$ sudo dpkg -i libcudnn8-samples_8.2.0.53-1+cuda11.3_amd64.deb
+
+
+// simple install:
+https://developer.nvidia.com/rdp/cudnn-download
+
+$ tar -xzvf cudnn-11.5-linux-x64-v8.0.2.39.tgz
+
+$ sudo cp cuda/include/cudnn*.h /usr/local/cuda/include
+$ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+$ sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
+
+
+--------------------------------------------------------------------------------
+// Cupy
+https://docs.cupy.dev/en/stable/install.html
+
+# first activate python virtual env:
+$ source ~/.config/*venv-name*/bin/activate
+
+# follow cupy instructions
+$ python -m pip install -U setuptools pip
+
+# 
+$ 	pip install cupy-cuda114
+
+--------------------------------------------------------------------------------
+// OpenCV
+
+// dowload opencv, and opencv-contrib folders
+
+// install numpy
+$ pip3 install numpy
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+-D CMAKE_CXX_STANDARD=17 \
+-D CMAKE_INSTALL_PREFIX=/usr/local \
+-D WITH_TBB=ON \
+-D ENABLE_FAST_MATH=1 \
+-D CUDA_FAST_MATH=1 \
+-D WITH_CUBLAS=1 \
+-D WITH_CUDA=ON \
+-D BUILD_opencv_cudacodec=OFF \
+-D WITH_CUDNN=ON \
+-D OPENCV_DNN_CUDA=ON \
+-D WITH_V4L=ON \
+-D WITH_QT=OFF \
+-D WITH_OPENGL=ON \
+-D WITH_GSTREAMER=ON \
+-D OPENCV_GENERATE_PKGCONFIG=ON \
+-D OPENCV_PC_FILE_NAME=opencv.pc \
+-D OPENCV_ENABLE_NONFREE=ON \
+-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+-D INSTALL_PYTHON_EXAMPLES=ON \
+-D BUILD_NEW_PYTHON_SUPPORT=ON \
+-D BUILD_opencv_python3=ON \
+-D HAVE_opencv_python3=ON \
+-D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3.8 \
+-D PYTHON_INCLUDE_DIR=/usr/include/python3.8 \
+-D PYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.8 \
+-D INSTALL_C_EXAMPLES=OFF \
+-D BUILD_EXAMPLES=OFF ..
+
+ cmake -D CMAKE_BUILD_TYPE=RELEASE \
+ -D CMAKE_CXX_STANDARD=17 \
+-D CMAKE_INSTALL_PREFIX=$(python3 -c "import sys; print(sys.prefix)") \
+-D WITH_TBB=ON \
+-D BUILD_TIFF=ON \
+-D ENABLE_FAST_MATH=1 \
+-D CUDA_FAST_MATH=1 \
+-D WITH_CUBLAS=1 \
+-D WITH_CUDA=ON \
+-D WITH_CUDNN=ON \
+-D OPENCV_DNN_CUDA=OFF \
+-D WITH_V4L=ON \
+-D WITH_QT=OFF \
+-D WITH_OPENGL=ON \
+-D INSTALL_PYTHON_EXAMPLES=ON \
+-D BUILD_NEW_PYTHON_SUPPORT=ON \
+-D BUILD_opencv_python3=ON \
+-D HAVE_opencv_python3=ON \
+-D PYTHON_EXECUTABLE=$(which python3) \
+-D OPENCV_PYTHON3_INSTALL_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
+-D INSTALL_PYTHON_EXAMPLES=ON \
+-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+-D OPENCV_ENABLE_NONFREE=ON \
+-D BUILD_EXAMPLES=ON ..
+
+
+(or can use cmake-gui and refer to the project, and build directory)
+$ make -j8
+
+
+$ sudo make install
+$ sudo ldconfig
+
+
+--------------------------------------------------------------------------------
+// anaconda
+
+1.) download bash script from:
+	https://www.anaconda.com/products/individual
+	
+2.) move bash script to some location, run
+
+:~$ bash Anaconda3-2021.11-Linux-x86_64.sh
+- when asked about folder, make a new folder
+
+3.) add anaconda bin to path (this might be done already?)
+
+$ echo 'export PATH=/path/to/anaconda3/bin:$PATH'
+
+# check to see that it's added:
+$ gedit ~/.bashrc
+
+$ anaconda-navigator
+4.) launch:
+$ spyder
+
+// make a new environment with specific python version
+$ conda create -n "py38" python=3.8.1
+$ conda activate py38
+
+// install some python dependencies
+conda install h5py
+conda install scikit-learn
+conda install numpy
+
+// install pytorch
+https://pytorch.org/get-started/locally/
+
+//dependencies for open3d
+$ pip3 install addict
+$ pip3 install tqdm
+$ pip3 install sklearn
+
+// open3d for 3d visualization, has conda install, but can try build from source as well
+conda install -c open3d-admin open3d
+
+http://www.open3d.org/docs/release/compilation.html
+
+
+--------------------------------------------------------------------------------
+// intel realSense SDK
+
+https://github.com/IntelRealSense/librealsense/blob/master/doc/installation.md
+
+
+

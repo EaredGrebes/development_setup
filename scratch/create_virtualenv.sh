@@ -1,10 +1,11 @@
 #!/bin/bash
-set -ex
+
+#set -ex
 
 # configuration
-python_version=3.7
-virtual_env_name=sf_cet
-requirements_file="requirements_local.txt"
+python_version=3.8
+virtual_env_name=py38_test1
+requirements_file="py37_cv_requirements_v1.txt"
 
 # change into the directory of this file
 DIR=$(dirname $0)
@@ -27,7 +28,7 @@ else
 fi
 
 # Now install requirements.
-$virtualenv_dir/bin/pip install -r requirements_file
+$virtualenv_dir/bin/pip install -r $requirements_file
 
 
 popd

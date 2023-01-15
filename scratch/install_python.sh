@@ -11,6 +11,10 @@ if [ -f "$tmp" ]; then
     echo "$tmp already exists"
 else
     echo "$tmp does not exist, installing"
+    sudo apt install software-properties-common
+    sudo add-apt-repository ppa:deadsnakes/ppa
+    sudo apt update
+    
     sudo apt install python$python_version
     sudo apt install python$python_version-venv # needed to get pip in the venv
 fi

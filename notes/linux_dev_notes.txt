@@ -30,6 +30,8 @@ https://micheleg.github.io/dash-to-dock/download.html
 # check which version of package
 $ which *
 
+
+
 --------------------------------------------------------------------------------
 # docker
 # install docker engine
@@ -49,6 +51,13 @@ $ virtualenv --version
 
 # create new virtual environment with venv:
 $ python3.7 -m venv /path/to/new/virtual/environment
+
+$ source ~/.config/virtualenv/*env_name*/bin/activate
+
+
+--------------------------------------------------------------------------------
+// spyder
+$ pip install spyder numpy scipy pandas matplotlib sympy cython
 
 --------------------------------------------------------------------------------
 // LaTeX
@@ -237,7 +246,7 @@ $ sudo ldconfig
 
 
 --------------------------------------------------------------------------------
-// anaconda
+// anaconda - depreceated
 
 1.) download bash script from:
 	https://www.anaconda.com/products/individual

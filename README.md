@@ -27,3 +27,14 @@ clone repo:
 $ git clone git@github.com:EaredGrebes/development_setup.git
 ```
 
+## virtualbox
+
+good for prototyping dev environments (can't use gpu tho)
+https://www.oracle.com/virtualization/technologies/vm/downloads/virtualbox-downloads.html
+
+some dependencies?
+```
+$ sudo apt-get install libqt5sql5 libqt5help5 libqt5xml5
+$ sudo apt install /Downloads/virtualbox-7.0_7.0.4-154605_Ubuntu_focal_amd64.deb
+```
+

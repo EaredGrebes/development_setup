@@ -81,4 +81,37 @@ $ ./development_setup/scratch/create_virtualenv.sh
 add alias to .bashrc
 ```alias my_env='source ~/.config/virtualenvs/*env_name*/bin/activate'```
 
+## pytorch
+
+current release: https://pytorch.org/
+```pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116```
+
+in python
+```
+import torch
+torch.cuda.is_available()
+torch.cuda.get_device_name(0)
+
+## open3d
+
+```
+$ pip install -U pip>=20.3
+$ pip install open3d=0.16.0
+```
+
+## cupy
+
+```
+$ python -m pip install -U setuptools pip
+```
+
+
+## miniconda
+
+
+
+
+
+
+
 

@@ -27,10 +27,35 @@ clone repo:
 $ git clone git@github.com:EaredGrebes/development_setup.git
 ```
 
+## Nvidia cuda
+
+the most bug-free for ml and ubuntu 2004
+```
+$ sudo apt install nvidia-driver-470
+```
+
+developer toolkit, but select runfile option (UNSELECT DRIVER):
+https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04
+
+``` sudo sh cuda_12.0.0_525.60.13_linux.run ```
+
+add this to .bashrc:
+```
+export PATH=/usr/local/cuda-12.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-12.0/lib64:$LD_LIBRARY_PATH
+```
+
 ## virtualbox
 
 good for prototyping dev environments (can't use gpu tho)
 https://www.oracle.com/virtualization/technologies/vm/downloads/virtualbox-downloads.html
+
+on guest machine:
+```
+$ sudo apt install virtualbox-guest-utils
+$ sudo adduser [username] vboxsf
+```
+then add folder in virtualbox gui tool
 
 ## ubuntu 20.04
 

@@ -219,12 +219,13 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D HAVE_opencv_python3=ON \
 -D BUILD_opencv_python3=ON \
 -D PYTHON_EXECUTABLE=$(which python3) \
--D OPENCV_PYTHON3_INSTALL_PATH=~/.config/virtualenvs/py39_test1/lib/python3.9/site-packages \
+-D OPENCV_PYTHON3_INSTALL_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
 -D INSTALL_PYTHON_EXAMPLES=ON \
 -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
 -D OPENCV_ENABLE_NONFREE=ON \
 -D BUILD_EXAMPLES=ON ..
-
+```
+```
 $ make -j8
 $ sudo make install
 $ sudo ldconfig

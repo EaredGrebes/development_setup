@@ -35,7 +35,7 @@ $ sudo apt install nvidia-driver-470
 ```
 
 developer toolkit, but select runfile option (UNSELECT DRIVER):
-https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04
+[https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04](https://developer.nvidia.com/cuda-11-4-2-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=runfile_local)
 
 ``` $ sudo sh cuda_12.0.0_525.60.13_linux.run ```
 
@@ -91,12 +91,13 @@ in python
 import torch
 torch.cuda.is_available()
 torch.cuda.get_device_name(0)
+```
 
 ## open3d
 
 ```
 $ pip install -U pip>=20.3
-$ pip install open3d=0.16.0
+$ pip install open3d==0.16.0
 ```
 
 ## cupy

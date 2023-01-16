@@ -37,13 +37,14 @@ $ sudo apt install nvidia-driver-470
 developer toolkit, but select runfile option (UNSELECT DRIVER):
 https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04
 
-``` sudo sh cuda_12.0.0_525.60.13_linux.run ```
+``` $ sudo sh cuda_12.0.0_525.60.13_linux.run ```
 
 add this to .bashrc:
 ```
 export PATH=/usr/local/cuda-12.0/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda-12.0/lib64:$LD_LIBRARY_PATH
 ```
+cudnn, just download and run the .deb installer, use email alexs4@uw.edu: https://developer.nvidia.com/rdp/cudnn-download
 
 ## virtualbox
 
@@ -65,5 +66,19 @@ $ sudo apt install gnome-tweaks
 $ gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
 ```
 
+## python environments with virtualenv
+
+install pip and virtualenv
+```
+$ sudo apt update
+$ sudo apt install python3-pip
+$ pip install virtualenv
+```
+use script to generate a python virtual environment
+```
+$ ./development_setup/scratch/create_virtualenv.sh
+```
+add alias to .bashrc
+```alias my_env='source ~/.config/virtualenvs/*env_name*/bin/activate'```
 
 

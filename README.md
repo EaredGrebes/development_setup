@@ -41,8 +41,8 @@ https://developer.nvidia.com/cuda-11-4-2-download-archive?target_os=Linux&target
 
 add this to .bashrc:
 ```
-export PATH=/usr/local/cuda-12.0/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-12.0/lib64:$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda-11.4/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-11.4/lib64:$LD_LIBRARY_PATH
 ```
 
 cudnn:

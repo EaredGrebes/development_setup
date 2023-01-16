@@ -46,11 +46,20 @@ export LD_LIBRARY_PATH=/usr/local/cuda-12.0/lib64:$LD_LIBRARY_PATH
 ```
 
 cudnn:
-use email alexs4@uw.edu: https://developer.nvidia.com/rdp/cudnn-archive
+download tar:
+https://developer.nvidia.com/rdp/cudnn-download
 
-download tar.
+```
+$ tar -xzvf cudnn-11.4-linux-x64-v8.2.4.15.tgz
+$ sudo cp cuda/include/cudnn*.h /usr/local/cuda/include
+$ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+$ sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
+```
 
-
+some dependencies for cuda opengl examples:
+```
+sudo apt-get install freeglut3 freeglut3-dev
+```
 
 ## virtualbox
 

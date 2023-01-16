@@ -35,7 +35,7 @@ $ sudo apt install nvidia-driver-470
 ```
 
 developer toolkit, but select runfile option (UNSELECT DRIVER):
-[https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04](https://developer.nvidia.com/cuda-11-4-2-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=runfile_local)
+https://developer.nvidia.com/cuda-11-4-2-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=20.04&target_type=runfile_local
 
 ``` $ sudo sh cuda_12.0.0_525.60.13_linux.run ```
 
@@ -102,8 +102,11 @@ $ pip install open3d==0.16.0
 
 ## cupy
 
+https://docs.cupy.dev/en/stable/install.html
+
 ```
 $ python -m pip install -U setuptools pip
+$ pip install cupy-cuda114
 ```
 
 

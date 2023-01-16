@@ -118,12 +118,8 @@ current release: https://pytorch.org/
 ```
 pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
 ```
-
-in python
 ```
-import torch
-torch.cuda.is_available()
-torch.cuda.get_device_name(0)
+python test/torch_test.py
 ```
 
 ## open3d

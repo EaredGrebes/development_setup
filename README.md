@@ -81,6 +81,11 @@ $ sudo apt install gnome-tweaks
 $ gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
 ```
 
+nfs:
+```
+$ sudo mount 10.42.0.1:/media/bilbo/drive2/nfs /nfs_share
+```
+
 ## python environments with virtualenv
 
 install pip and virtualenv

@@ -128,6 +128,12 @@ add nfs mounts
 $ sudo nano /etc/exports
 ```
 add these lines:
+```
+/mnt/cp5_2tb 10.42.0.142/24(rw,sync,no_subtree_check)
+/mnt/ssd1 10.42.0.142/24(rw,sync,no_subtree_check)
+```
+
+
 
 apply changes to the file
 ```

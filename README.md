@@ -129,10 +129,23 @@ $ sudo nano /etc/exports
 ```
 add these lines:
 
+apply changes to the file
+```
+$ sudo exportfs -a
+```
 
 nfs on client:
 ```
-$ 
+$ sudo apt install nfs-common
+$ sudo mkdir /mnt/cp3_1 
+$ sudo mount 10.42.0.1:/mnt/cp3_1 /mnt/cp3_1
+```
+to mount nfs on boot, add these lines to ```/etc/fstab```
+
+```
+10.42.0.1:/mnt/cp3_1 /mnt/cp3_1 nfs rsize=8192,wsize=8192,timeo=14,intr
+10.42.0.1:/mnt/ssd1 /mnt/ssd1 nfs rsize=8192,wsize=8192,timeo=14,intr
+```
 
 ## python environments with virtualenv
 

@@ -81,7 +81,7 @@ $ sudo apt install gnome-tweaks
 $ gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
 ```
 
-nfs:
+nfs on host:
 
 show drives: ```lsblk```
 
@@ -108,6 +108,11 @@ add lines:
 /dev/sdb1 /mnt/ssd1 ext4 defaults 0 0
 
 ```
+install and start nfs
+```
+$ sudo apt install nfs-kernel-server
+$ sudo systemctl start nfs-kernel-server.service
+```
 
 to check or restart nfs server on host machine:
 ```
@@ -118,6 +123,16 @@ to set nfs to autostart on boot:
 ```
 $ update-rc.d nfs-kernel-server enable
 ```
+add nfs mounts
+```
+$ sudo nano /etc/exports
+```
+add these lines:
+
+
+nfs on client:
+```
+$ 
 
 ## python environments with virtualenv
 

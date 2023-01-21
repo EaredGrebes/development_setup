@@ -114,6 +114,10 @@ to check or restart nfs server on host machine:
 $ sudo systemctl status nfs-kernel-server
 $ sudo systemctl restart nfs-kernel-server
 ```
+to set nfs to autostart on boot:
+```
+$ update-rc.d nfs-kernel-server enable
+```
 
 ## python environments with virtualenv
 

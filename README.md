@@ -99,7 +99,14 @@ $ sudo umount /dev/nvme0n1p1
 to mount at boot:
 ```
 $ cd ~
-$  sudo mount /dev/sdb1 /mnt/ssd1
+$   sudo nano /etc/fstab
+```
+
+add lines:
+```
+/dev/nvme0n1p1 /mnt/cp3_1  ext4 defaults 0 0
+/dev/sdb1 /mnt/ssd1 ext4 defaults 0 0
+
 ```
 
 

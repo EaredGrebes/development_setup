@@ -82,9 +82,27 @@ $ gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
 ```
 
 nfs:
+
+show drives: ```lsblk```
+
+first mount drive
 ```
-$ sudo mount 10.42.0.1:/media/bilbo/drive2/nfs /nfs_share
+$ sudo mount /dev/nvme0n1p1 /mnt/cp3_1
+$ sudo mount /dev/sdb1 /mnt/ssd1
 ```
+
+to unmount
+```
+$ sudo umount /dev/nvme0n1p1
+```
+
+to mount at boot:
+```
+$ cd ~
+$  sudo mount /dev/sdb1 /mnt/ssd1
+```
+
+
 
 ## python environments with virtualenv
 

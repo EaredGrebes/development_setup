@@ -109,7 +109,11 @@ add lines:
 
 ```
 
-
+to check or restart nfs server on host machine:
+```
+$ sudo systemctl status nfs-kernel-server
+$ sudo systemctl restart nfs-kernel-server
+```
 
 ## python environments with virtualenv
 

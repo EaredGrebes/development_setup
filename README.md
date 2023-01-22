@@ -320,7 +320,11 @@ $ sudo ldconfig
 
 maybe have to do some sym link stuff
 
+## ray
 
+```
+$ pip install -U ray==2.2.0
+```
 
 
 

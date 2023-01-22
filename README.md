@@ -81,6 +81,16 @@ $ sudo apt install gnome-tweaks
 $ gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
 ```
 
+check for existing ssh keys (should only have 1):
+```
+$ ls -al ~/.ssh
+```
+
+add key to machine want to login to:
+```
+$ ssh-copy-id bilbo@10.42.0.1
+```
+
 nfs on host:
 
 show drives: ```lsblk```

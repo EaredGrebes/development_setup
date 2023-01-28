@@ -75,6 +75,8 @@ then add folder in virtualbox gui tool
 
 ## ubuntu 20.04
 
+sleep: ```systemctl suspend```
+
 different workspaces:
 ```
 $ sudo apt install gnome-tweaks
@@ -325,6 +327,36 @@ maybe have to do some sym link stuff
 ```
 $ pip install -U ray==2.2.0
 ```
+
+ray on both host and nodes needs to be started from the directory that python will consider the root path.
+host start:
+```
+$ ray start --head --port=6379
+```
+node start:
+```
+$ ray start --address='192.168.0.145:6379'
+```
+
+## docker
+
+use the apt repo method
+https://docs.docker.com/engine/install/ubuntu/
+
+don't forgot Post-Installation steps
+```
+$ sudo groupadd docker
+$ sudo usermod -aG docker $USER
+```
+log out and in
+
+install nvidia for docker
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html
+
+
+
+
+
 
 
 

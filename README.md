@@ -191,7 +191,7 @@ use script to generate a python virtual environment
 ```
 $ ./development_setup/scratch/create_virtualenv.sh
 ```
-add alias to .bashrc
+add function to .bashrc to access env
 ```alias my_env='source ~/.config/virtualenvs/*env_name*/bin/activate'```
 
 ## pytorch

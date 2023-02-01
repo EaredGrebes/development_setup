@@ -165,6 +165,16 @@ to mount nfs on boot, add these lines to ```/etc/fstab```
 10.42.0.1:/mnt/ssd1 /mnt/ssd1 nfs rsize=8192,wsize=8192,timeo=14,intr
 ```
 
+raid 0:
+```
+$ lsblk
+$ mdadm –create /dev/md0 –level=0 –raid-devices=2 /dev/nvme1n1 /dev/nvme2n1
+```
+configure disk in disk editor, mount locally
+```
+$ sudo mount /dev/md0p1 /mnt/md0
+```
+
 ## python environments with virtualenv
 
 install pip and virtualenv

@@ -179,6 +179,10 @@ scan the current drive config, and save it to the madm
 ```
 sudo mdadm --detail --scan | sudo tee -a /etc/mdadm/mdadm.conf
 ```
+should look like:
+```
+ARRAY /dev/md0 level=raid0 num-devices=2 metadata=1.2 name=bilbo:0 UUID=7368baaf:9b08df19:d9362975:bf70eb1f devices=/dev/nvme1n1,/dev/nvme2n1
+```
 
 ## python environments with virtualenv
 

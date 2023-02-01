@@ -93,7 +93,7 @@ add key to machine want to login to:
 $ ssh-copy-id bilbo@10.42.0.1
 ```
 
-nfs on host:
+## nfs on host:
 
 show drives: ```lsblk```
 
@@ -145,14 +145,12 @@ add these lines:
 /mnt/ssd1 10.42.0.142/24(rw,sync,no_subtree_check)
 ```
 
-
-
 apply changes to the file
 ```
 $ sudo exportfs -a
 ```
 
-nfs on client:
+## nfs on client:
 ```
 $ sudo apt install nfs-common
 $ sudo mkdir /mnt/cp3_1 
@@ -165,14 +163,21 @@ to mount nfs on boot, add these lines to ```/etc/fstab```
 10.42.0.1:/mnt/ssd1 /mnt/ssd1 nfs rsize=8192,wsize=8192,timeo=14,intr
 ```
 
-raid 0:
+## raid 0:
+https://www.digitalocean.com/community/tutorials/how-to-create-raid-arrays-with-mdadm-on-ubuntu-16-04
+
 ```
 $ lsblk
-$ mdadm –create /dev/md0 –level=0 –raid-devices=2 /dev/nvme1n1 /dev/nvme2n1
+$ sudo mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/nvme1n1 /dev/nvme2n1
 ```
 configure disk in disk editor, mount locally
 ```
 $ sudo mount /dev/md0p1 /mnt/md0
+```
+
+scan the current drive config, and save it to the madm 
+```
+sudo mdadm --detail --scan | sudo tee -a /etc/mdadm/mdadm.conf
 ```
 
 ## python environments with virtualenv

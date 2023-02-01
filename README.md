@@ -168,7 +168,7 @@ https://www.digitalocean.com/community/tutorials/how-to-create-raid-arrays-with-
 
 ```
 $ lsblk
-$ sudo mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/nvme1n1 /dev/nvme2n1
+$ sudo mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/nvme1n1p1 /dev/nvme2n1p1
 ```
 configure disk in disk editor, mount locally
 ```
@@ -181,7 +181,7 @@ sudo mdadm --detail --scan | sudo tee -a /etc/mdadm/mdadm.conf
 ```
 should look like:
 ```
-ARRAY /dev/md0 level=raid0 num-devices=2 metadata=1.2 name=bilbo:0 UUID=7368baaf:9b08df19:d9362975:bf70eb1f devices=/dev/nvme1n1,/dev/nvme2n1
+ARRAY /dev/md0 level=raid0 num-devices=2 metadata=1.2 name=bilbo:0 UUID=7368baaf:9b08df19:d9362975:bf70eb1f devices=/dev/nvme1n1p1,/dev/nvme2n1p1
 ```
 
 ## python environments with virtualenv

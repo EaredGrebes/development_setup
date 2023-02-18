@@ -310,6 +310,12 @@ $ wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.
 $ mkdir build
 $ cd build
 ```
+if on ubunt 22.04, gcc-11 messes with compiling the cuda stuff. force it to use gcc-9 to compile the cuda stuff:
+
+```
+$ sudo apt install gcc-9 g++-9
+
+```
 run from build directory:
 
 ```
@@ -323,10 +329,12 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D WITH_CUBLAS=1 \
 -D WITH_CUDA=ON \
 -D WITH_CUDNN=ON \
+-D CUDA_HOST_COMPILER:FILEPATH=/usr/bin/gcc-9 \
 -D OPENCV_DNN_CUDA=OFF \
 -D WITH_V4L=ON \
 -D WITH_QT=OFF \
 -D WITH_OPENGL=ON \
+-D WITH_OPENCL=OFF \
 -D INSTALL_PYTHON_EXAMPLES=ON \
 -D BUILD_NEW_PYTHON_SUPPORT=ON \
 -D HAVE_opencv_python3=ON \
@@ -334,9 +342,10 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D PYTHON_EXECUTABLE=$(which python3) \
 -D OPENCV_PYTHON3_INSTALL_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
 -D INSTALL_PYTHON_EXAMPLES=ON \
--D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+-D OPENCV_EXTRA_MODULES_PATH=~/software/opencv_contrib-4.5.2/modules \
 -D OPENCV_ENABLE_NONFREE=ON \
 -D BUILD_EXAMPLES=ON ..
+
 ```
 ```
 $ make -j8

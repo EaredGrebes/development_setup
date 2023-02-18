@@ -310,7 +310,7 @@ run from build directory:
 ```
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D CMAKE_CXX_STANDARD=17 \
--D CMAKE_INSTALL_PREFIX=/usr/lcoal \
+-D CMAKE_INSTALL_PREFIX=/usr/local \
 -D WITH_TBB=ON \
 -D BUILD_TIFF=ON \
 -D ENABLE_FAST_MATH=1 \

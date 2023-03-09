@@ -219,7 +219,7 @@ add function to .bashrc to access env
 
 current release: https://pytorch.org/
 ```
-pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
+pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu114
 ```
 ```
 python test/torch_test.py

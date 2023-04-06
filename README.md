@@ -230,6 +230,7 @@ python test/torch_test.py
 ```
 $ pip install -U pip>=20.3
 $ pip install open3d==0.16.0
+$ pip install open3d==0.15.2
 ```
 
 ## cupy
